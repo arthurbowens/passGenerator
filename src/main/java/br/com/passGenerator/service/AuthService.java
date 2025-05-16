@@ -1,6 +1,5 @@
 package br.com.passGenerator.service;
 
-
 import br.com.passGenerator.model.dto.AuthDTO;
 import br.com.passGenerator.model.dto.CadastroDTO;
 import br.com.passGenerator.model.entity.Usuario;
@@ -9,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 public class AuthService {
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
 
     @Autowired
     private UsuarioRepository usuarioRepo;
@@ -32,6 +35,9 @@ public class AuthService {
     }
 
     public void signup(CadastroDTO dto) {
+        if (!isValidEmail(dto.email())) {
+            throw new RuntimeException("Email inválido");
+        }
         if (usuarioRepo.findByEmail(dto.email()).isPresent()) {
             throw new RuntimeException("Email já cadastrado");
         }
@@ -40,5 +46,9 @@ public class AuthService {
         }
         Usuario user = new Usuario(null, dto.email(), dto.nome(), dto.dataNascimento(), encoder.encode(dto.senha()));
         usuarioRepo.save(user);
+    }
+
+    private boolean isValidEmail(String email) {
+        return email != null && EMAIL_PATTERN.matcher(email).matches();
     }
 }
