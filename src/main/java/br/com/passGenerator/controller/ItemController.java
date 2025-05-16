@@ -1,11 +1,11 @@
-package controller;
+package br.com.passGenerator.controller;
 
 
-import model.dto.ItemDTO;
-import model.entity.Item;
+import br.com.passGenerator.model.dto.ItemDTO;
+import br.com.passGenerator.model.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.ItemService;
+import br.com.passGenerator.service.ItemService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package model.dto;
+package br.com.passGenerator.model.dto;
 
 import java.time.LocalDate;
 

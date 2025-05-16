@@ -1,11 +1,11 @@
-package controller;
+package br.com.passGenerator.controller;
 
 
-import model.dto.AuthDTO;
-import model.dto.CadastroDTO;
+import br.com.passGenerator.model.dto.AuthDTO;
+import br.com.passGenerator.model.dto.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.AuthService;
+import br.com.passGenerator.service.AuthService;
 
 @RestController
 @RequestMapping("/auth")

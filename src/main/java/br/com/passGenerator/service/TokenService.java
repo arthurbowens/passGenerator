@@ -1,7 +1,9 @@
-package service;
+package br.com.passGenerator.service;
 
 
-import model.entity.Usuario;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import br.com.passGenerator.model.entity.Usuario;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

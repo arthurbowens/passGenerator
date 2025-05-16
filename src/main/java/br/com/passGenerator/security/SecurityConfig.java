@@ -1,4 +1,4 @@
-package security;
+package br.com.passGenerator.security;
 
 
 import org.springframework.context.annotation.Bean;

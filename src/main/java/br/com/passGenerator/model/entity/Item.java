@@ -1,4 +1,4 @@
-package model.entity;
+package br.com.passGenerator.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,15 +1,13 @@
-package service;
+package br.com.passGenerator.service;
 
 
-import model.dto.AuthDTO;
-import model.dto.CadastroDTO;
-import model.entity.Usuario;
-import model.repository.UsuarioRepository;
+import br.com.passGenerator.model.dto.AuthDTO;
+import br.com.passGenerator.model.dto.CadastroDTO;
+import br.com.passGenerator.model.entity.Usuario;
+import br.com.passGenerator.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AuthService {

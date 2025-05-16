@@ -1,9 +1,9 @@
-package service;
+package br.com.passGenerator.service;
 
 
-import model.dto.ItemDTO;
-import model.entity.Item;
-import model.repository.ItemRepository;
+import br.com.passGenerator.model.dto.ItemDTO;
+import br.com.passGenerator.model.entity.Item;
+import br.com.passGenerator.model.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

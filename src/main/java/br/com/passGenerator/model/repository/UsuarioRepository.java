@@ -1,6 +1,6 @@
-package model.repository;
+package br.com.passGenerator.model.repository;
 
-import model.entity.Usuario;
+import br.com.passGenerator.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
