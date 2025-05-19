@@ -1,6 +1,6 @@
 package br.com.passGenerator.service;
 
-
+import br.com.passGenerator.exception.AppException;
 import br.com.passGenerator.model.dto.ItemDTO;
 import br.com.passGenerator.model.entity.Item;
 import br.com.passGenerator.model.repository.ItemRepository;
@@ -17,12 +17,15 @@ public class ItemService {
 
     public void criar(ItemDTO dto) {
         if (repo.findByNome(dto.nome()).isPresent()) {
-            throw new RuntimeException("Item já existente");
+            throw new AppException("Item já existente", 400);
         }
         repo.save(new Item(null, dto.nome(), dto.senha()));
     }
 
     public void deletar(Long id) {
+        if (!repo.existsById(id)) {
+            throw new AppException("Item não encontrado", 404);
+        }
         repo.deleteById(id);
     }
 

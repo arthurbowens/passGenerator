@@ -1,5 +1,6 @@
 package br.com.passGenerator.service;
 
+import br.com.passGenerator.exception.AppException;
 import br.com.passGenerator.model.dto.AuthDTO;
 import br.com.passGenerator.model.dto.CadastroDTO;
 import br.com.passGenerator.model.entity.Usuario;
@@ -26,23 +27,23 @@ public class AuthService {
 
     public String signin(AuthDTO dto) {
         Usuario usuario = usuarioRepo.findByEmail(dto.email())
-                .orElseThrow(() -> new RuntimeException("Credenciais inválidas"));
+                .orElseThrow(() -> new AppException("Credenciais inválidas", 401));
 
         if (!encoder.matches(dto.senha(), usuario.getSenha())) {
-            throw new RuntimeException("Credenciais inválidas");
+            throw new AppException("Credenciais inválidas", 401);
         }
         return tokenService.gerarToken(usuario);
     }
 
     public void signup(CadastroDTO dto) {
         if (!isValidEmail(dto.email())) {
-            throw new RuntimeException("Email inválido");
+            throw new AppException("Email inválido", 400);
         }
         if (usuarioRepo.findByEmail(dto.email()).isPresent()) {
-            throw new RuntimeException("Email já cadastrado");
+            throw new AppException("Email já cadastrado", 400);
         }
         if (!dto.senha().equals(dto.confirmacaoSenha())) {
-            throw new RuntimeException("Senhas não conferem");
+            throw new AppException("Senhas não conferem", 400);
         }
         Usuario user = new Usuario(null, dto.email(), dto.nome(), dto.dataNascimento(), encoder.encode(dto.senha()));
         usuarioRepo.save(user);
