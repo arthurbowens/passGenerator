@@ -1,9 +1,9 @@
 package br.com.passGenerator.controller;
 
-
 import br.com.passGenerator.model.dto.ItemDTO;
 import br.com.passGenerator.model.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import br.com.passGenerator.service.ItemService;
 
@@ -17,17 +17,20 @@ public class ItemController {
     private ItemService service;
 
     @PostMapping
-    public void criar(@RequestBody ItemDTO dto) {
+    public ResponseEntity<Void> criar(@RequestBody ItemDTO dto) {
         service.criar(dto);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
         service.deletar(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/items")
-    public List<Item> listar() {
-        return service.listar();
+    public ResponseEntity<List<Item>> listar() {
+        List<Item> itens = service.listar();
+        return ResponseEntity.ok(itens);
     }
 }
