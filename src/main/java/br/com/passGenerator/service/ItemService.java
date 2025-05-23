@@ -60,4 +60,12 @@ public class ItemService {
         }
         return itens;
     }
+
+    public void deletarTodos() {
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = usuarioRepo.findByEmail(userEmail)
+                .orElseThrow(() -> new AppException("Usuário não encontrado", 404));
+        List<Item> itens = repo.findByUsuario(usuario);
+        repo.deleteAll(itens);
+    }
 }

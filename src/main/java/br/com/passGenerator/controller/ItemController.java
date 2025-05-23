@@ -28,6 +28,12 @@ public class ItemController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/todos")
+    public ResponseEntity<Void> deletarTodos() {
+        service.deletarTodos();
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/items")
     public ResponseEntity<List<Item>> listar() {
         List<Item> itens = service.listar();

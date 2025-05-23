@@ -11,4 +11,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     Optional<Item> findByNome(String nome);
     Optional<Item> findByNomeAndUsuario(String nome, Usuario usuario);
     List<Item> findByUsuario(Usuario usuario);
+    void deleteByUsuario(Usuario usuario);
 }
